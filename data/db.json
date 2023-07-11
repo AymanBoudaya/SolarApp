@@ -8,15 +8,33 @@
     },
     {
       "id": 2,
-      "name": "Longi 525",
-      "price": "500",
+      "name": "Longi solar 525",
+      "price": 505,
       "checked": true
+    },
+    {
+      "id": 3,
+      "name": "Longi 325",
+      "price": "400",
+      "checked": false
     },
     {
       "id": 4,
       "name": "Alphanis 400",
       "price": "400",
       "checked": false
+    },
+    {
+      "name": "Yingli solar 325",
+      "price": 350,
+      "checked": true,
+      "id": 5
+    },
+    {
+      "name": "Yingli solar 250",
+      "price": 280,
+      "checked": true,
+      "id": 6
     }
   ]
 }

@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Panel } from '../model/panel.model';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panels',
@@ -10,40 +9,48 @@ import { Observable } from 'rxjs';
   styleUrls: ['./panels.component.css']
 })
 export class PanelsComponent implements OnInit {
-  products!: Array<Panel>;
 
-  constructor(private productService : ProductService){
-
+  public products!: Array<Panel>;
+  public keyword: string = "";
+  totalPages:number=0;
+  pageSize:number=3;
+  currentPage:number=1;
+  constructor(private productService : ProductService,
+    private router : Router){
+    
   }
   ngOnInit(){
-    this.getProducts();
+    this.searchProducts();
   }
-
-  getProducts() {
-
-    this.productService.getProducts()
+  
+  searchProducts() {
+    
+    this.productService.searchProducts(this.keyword,this.currentPage,this.pageSize)
     .subscribe({
-      next : data => {
-        this.products = data
+      next : resp => {
+        this.products = resp.body as Panel[]
+        let totalProducts:number = parseInt(resp.headers.get('x-total-count')!)
+        this.totalPages = Math.floor(totalProducts / this.pageSize);
+        if(totalProducts % this.pageSize !=0) this.totalPages++;
       },
       error : err => console.log(err)
     })
     //this.products = this.productService.getProducts()
   }
-
+  
   handleCheckProduct(product:Panel){
     this.productService.checkProduct(product)
     .subscribe({
       next : updatedProduct =>
-        {
-          product.checked = !product.checked
-
+      {
+        product.checked = !product.checked
+        
       },
       error : err => console.log(err)
     })
   };
-
-
+  
+  
   handleDelete(product:Panel) {
     if(confirm("Etes vous sûr de vouloir supprimer ?"))
     this.productService.deleteProduct(product)
@@ -53,6 +60,15 @@ export class PanelsComponent implements OnInit {
       }
     })
   }
+  
+  handleGotoPage(page: number) {
+    this.currentPage = page;
+    this.searchProducts();
+  }
+
+  handleEdit(product: Panel) {
+    this.router.navigateByUrl(`/editProduct/${product.id}`) 
+   }
 }
 
 

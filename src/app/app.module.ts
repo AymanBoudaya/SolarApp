@@ -7,18 +7,22 @@ import { PanelsComponent } from './panels/panels.component';
 import { NewPanelComponent } from './new-panel/new-panel.component';
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { EditPanelComponent } from './edit-panel/edit-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
     PanelsComponent,
     NewPanelComponent,
-    HomeComponent
+    HomeComponent,
+    EditPanelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

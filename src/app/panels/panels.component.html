@@ -1,12 +1,22 @@
 <div class="p-3">
   <div class="card">
     <div class="card-body">
+      <div class="card-body">
+        <input class="p-1" type="text" [(ngModel)]="keyword">
+        <button type="submit"
+        (click)="searchProducts()"
+        class="ms-2 btn btn-outline-success">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
       <table class="table">
         <thead>
           <tr>
             <th>Nom</th>
             <th>Prix</th>
             <th>Checked</th>
+            <th>Supprimer</th>
+            <th>Modifier</th>
           </tr>
         </thead>
         <tbody>
@@ -27,10 +37,26 @@
                 <i class="bi bi-trash"></i>
               </button>
             </td>
+            <td>
+              <button
+              (click)="handleEdit(product)"
+              class="btn btn-outline-info">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
 
           </tr>
         </tbody>
       </table>
+      <ul class="nav nav-pills">
+        <li *ngFor="let page of [].constructor(this.totalPages); let i = index">
+          <button (click)="handleGotoPage(i+1)"
+          [ngClass]="currentPage==(i+1)?'btn-success':'btn-outline-success'"
+          class="btn  m-1">
+            {{(i+1)}}
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

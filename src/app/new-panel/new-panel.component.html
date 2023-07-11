@@ -1,7 +1,26 @@
 <div class="p-3">
   <div class="card">
     <div class="card-body">
-      <h3>New panel Component</h3>
+      <h3>Ajouter un panneau solaire</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <form action="" [formGroup]="productForm" (ngSubmit)="saveProduct()">
+            <div class="mb-3">
+              <label for="nom" class="form-label">Nom du panneau</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Prix du panneau</label>
+              <input type="number" class="form-control" formControlName="price">
+            </div>
+            <div class="mb-3">
+              <input type="checkbox" class="form-check-input" formControlName="checked">
+              <label class="form-label ms-2">Checked</label>
+            </div>
+            <button [disabled]="productForm.invalid" class="btn btn-success">Sauvegarder</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
