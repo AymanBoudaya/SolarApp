@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Longi 425",
+      "price": "400",
+      "checked": true
+    },
+    {
+      "id": 2,
+      "name": "Longi 525",
+      "price": "500",
+      "checked": true
+    },
+    {
+      "id": 3,
+      "name": "Longi 325",
+      "price": "400",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "name": "Alphanis 400",
+      "price": "400",
+      "checked": true
+    }
+  ]
+}
