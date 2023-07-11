@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { Panel } from '../model/panel.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-panels',
@@ -7,20 +10,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panels.component.css']
 })
 export class PanelsComponent implements OnInit {
-  products: Array<any> = [];
+  products!: Array<Panel>;
 
-  constructor(private http : HttpClient){
+  constructor(private productService : ProductService){
 
   }
   ngOnInit(){
-    this.http.get<Array<any>>("http://localhost:8089/products")
+    this.getProducts();
+  }
+
+  getProducts() {
+
+    this.productService.getProducts()
     .subscribe({
-      next : data => this.products = data,
+      next : data => {
+        this.products = data
+      },
       error : err => console.log(err)
     })
+    //this.products = this.productService.getProducts()
   }
-  handleCheckProduct(product:any){
-    this.http.patch<any>(`http://localhost:8089/products/${product.id}`,{checked:!product.checked})
+
+  handleCheckProduct(product:Panel){
+    this.productService.checkProduct(product)
     .subscribe({
       next : updatedProduct =>
         {
@@ -31,4 +43,16 @@ export class PanelsComponent implements OnInit {
     })
   };
 
+
+  handleDelete(product:Panel) {
+    if(confirm("Etes vous sûr de vouloir supprimer ?"))
+    this.productService.deleteProduct(product)
+    .subscribe({
+      next: value => {
+        this.products = this.products.filter(p => p.id != product.id)
+      }
+    })
+  }
 }
+
+
