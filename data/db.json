@@ -16,13 +16,13 @@
       "id": 3,
       "name": "Longi 325",
       "price": "400",
-      "checked": false
+      "checked": true
     },
     {
       "id": 4,
       "name": "Alphanis 400",
       "price": "400",
-      "checked": false
+      "checked": true
     },
     {
       "name": "Yingli solar 325",
@@ -31,10 +31,16 @@
       "id": 5
     },
     {
-      "name": "Yingli solar 250",
+      "id": 6,
+      "name": "Yingli solar 250 'hors stock'",
       "price": 280,
-      "checked": true,
-      "id": 6
+      "checked": true
+    },
+    {
+      "id": 7,
+      "name": "Ayman Boudaya",
+      "price": 1250,
+      "checked": false
     }
   ]
 }

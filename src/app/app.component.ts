@@ -7,17 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  title = 'le photovoltaÏQUE SFAXIEN';
 
-  actions : Array<any> = [
-    {title : "Home", route: "/home", icon : "house"},
-    {title : "Panels", route: "/panels", icon : "arrow-down-up"},
-    {title : "New Panel", route: "/newPanel", icon : "plus-circle"},
-  ]
-
-  currentAction:any;
-
-  setCurrentAction(action: any) {
-    this.currentAction = action;
-    }
 }
