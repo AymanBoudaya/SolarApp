@@ -4,12 +4,20 @@ import { HomeComponent } from './home/home.component';
 import { PanelsComponent } from './panels/panels.component';
 import { NewPanelComponent } from './new-panel/new-panel.component';
 import { EditPanelComponent } from './edit-panel/edit-panel.component';
+import { LoginComponent } from './login/login.component';
+import { AdminTemplateComponent } from './admin-template/admin-template.component';
 
 const routes: Routes = [
-  {path : "home", component : HomeComponent},
-  {path : "panels", component : PanelsComponent},
-  {path : "newPanel", component : NewPanelComponent},
-  {path : "editProduct/:id", component : EditPanelComponent},
+  {path : "Login", component : LoginComponent}, 
+  {
+    path : "admin", component : AdminTemplateComponent, children : [
+      {path : "home", component : HomeComponent},
+      {path : "panels", component : PanelsComponent},
+      {path : "newPanel", component : NewPanelComponent},
+      {path : "editProduct/:id", component : EditPanelComponent},
+    ]
+  },
+  {path : "", redirectTo: "Login", pathMatch: "full"},
 ];
 
 @NgModule({

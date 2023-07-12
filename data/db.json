@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "username": "user1",
+      "password": "1234",
+      "roles": ["USER"],
+      "token": "JWT"
+    }
+  ],
   "products": [
     {
       "id": 1,

@@ -75,8 +75,8 @@ export class PanelsComponent implements OnInit {
   }
 
   handleEdit(product: Panel) {
-    this.router.navigateByUrl(`/editProduct/${product.id}`)
-   }
+    this.router.navigateByUrl(`/admin/editProduct/${product.id}`)
+  }
 }
 
 
