@@ -6,14 +6,16 @@ import { NewPanelComponent } from './new-panel/new-panel.component';
 import { EditPanelComponent } from './edit-panel/edit-panel.component';
 import { LoginComponent } from './login/login.component';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { AuthorizationGuard } from './guards/authorization.guard';
 
 const routes: Routes = [
-  {path : "Login", component : LoginComponent}, 
+  {path : "Login", component : LoginComponent},
   {
-    path : "admin", component : AdminTemplateComponent, children : [
+    path : "admin", component : AdminTemplateComponent, canActivate:[AuthenticationGuard], children : [
       {path : "home", component : HomeComponent},
       {path : "panels", component : PanelsComponent},
-      {path : "newPanel", component : NewPanelComponent},
+      {path : "newPanel", component : NewPanelComponent, canActivate:[AuthorizationGuard]},
       {path : "editProduct/:id", component : EditPanelComponent},
     ]
   },

@@ -1,4 +1,4 @@
-<nav class="p-3 bg-dark" style = "color:aliceblue;">
+<nav class="p-3 bg-dark navbar" style = "color:aliceblue;">
   <h6 style = "color:aliceblue;">{{title}}</h6>
   <ul class="nav nav-pills">
     <li *ngFor="let action of actions">
@@ -14,6 +14,15 @@
     <li *ngIf="isLoading == true">
       <div class="spinner-border text-primary m-2 ms-2" role="status">
       </div>
+    </li>
+  </ul>
+  <ul class="nav nav-pills">
+    <li *ngIf="appState.authState.isAuthenticated == true">
+      {{appState.authState.username}}
+      <button class="btn btn-success" (click)="logout()">Logout</button>
+    </li>
+    <li *ngIf="!appState.authState.isAuthenticated">
+      <button class="btn btn-success" (click)="login()">Login</button>
     </li>
   </ul>
 </nav>

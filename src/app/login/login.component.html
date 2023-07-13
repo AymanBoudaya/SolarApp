@@ -2,6 +2,9 @@
     <div class="card">
         <div class="card-header">
             Authentication
+            <div class="alert alert-danger" *ngIf="errorMessage">
+              {{errorMessage}}
+            </div>
             <div class="card-body">
                 <form action="" (ngSubmit)="handleLogin()" [formGroup]="formLogin">
                     <div class="mb-3">

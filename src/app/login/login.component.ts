@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formLogin! : FormGroup;
-  
-  constructor(private fb : FormBuilder, private router : Router){}
+  errorMessage = undefined;
+  constructor(private fb : FormBuilder, private router : Router,
+    private authService : AuthService){}
   ngOnInit() {
     this.formLogin = this.fb.group({
       username : this.fb.control("", Validators.required),
@@ -18,9 +20,14 @@ export class LoginComponent implements OnInit {
     })
   }
   handleLogin() {
-   console.log(this.formLogin.value)
-   if (this.formLogin.value.username == "admin" && this.formLogin.value.password == "1234") {
-    this.router.navigateByUrl("/admin");
-   }
+    let username = this.formLogin.value.username;
+    let password = this.formLogin.value.password;
+    this.authService.login(username,password)
+    .then((resp) => {
+      this.router.navigateByUrl("/admin")
+    })
+    .catch((error) => {
+      this.errorMessage = error;
+    })
   }
 }
