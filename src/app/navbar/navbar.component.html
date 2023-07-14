@@ -1,7 +1,7 @@
 <nav class="p-3 bg-dark navbar" style = "color:aliceblue;">
   <h6 style = "color:aliceblue;">{{title}}</h6>
   <ul class="nav nav-pills">
-    <li *ngFor="let action of actions">
+    <li *ngFor="let action of actions" >
       <button
       (click)="setCurrentAction(action)"
       routerLink="/{{action.route}}"
